@@ -28,7 +28,7 @@ public class DSTP implements TabExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
 		if (!(sender instanceof Player)) {
-			sender.sendMessage(ChatColor.RED + "Only players may execute this command");
+			sender.sendMessage(ChatColor.RED + "Jen hráči mohou použít tento příkaz");
 			return true;
 		}
 		
@@ -36,20 +36,20 @@ public class DSTP implements TabExecutor {
 		
 		
 		if (Main.game.State == 0 || Main.game.InGame.contains(p.getUniqueId())) {
-			p.sendMessage(ChatColor.RED + "Your not a spectator!");
+			p.sendMessage(ChatColor.RED + "Nejsi spectator!");
 			return true;
 		}
 		
 		if (args.length == 0) {
-			p.sendMessage(ChatColor.RED + "Usage: /dstp <player>");
+			p.sendMessage(ChatColor.RED + "Použití: /dstp <player>");
 			return true;
 		} else {
 			Player t = Bukkit.getPlayer(args[0]);
 			if (t == null) {
-				p.sendMessage(ChatColor.RED + args[0] + " is not online!");
+				p.sendMessage(ChatColor.RED + args[0] + " není online!");
 			} else {
 				p.teleport(t.getLocation());
-				p.sendMessage(ChatColor.GREEN + "Teleported to: " + args[0]);
+				p.sendMessage(ChatColor.GREEN + "Teleportován k: " + args[0]);
 			}
 		}
 		return true;
