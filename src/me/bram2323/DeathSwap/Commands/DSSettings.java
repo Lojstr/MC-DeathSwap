@@ -28,44 +28,44 @@ public class DSSettings implements TabExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
 		if (!sender.hasPermission("ds.settings")) {
-			sender.sendMessage(ChatColor.RED + "You do not have permision to use this command!");
+			sender.sendMessage(ChatColor.RED + "Nemáte povolení pro použití tohoto příkazu!");
 			return true;
 		}
 		
 		if (args.length == 0) {
-			sender.sendMessage(ChatColor.RED + "Usage: /dssettings <set,get,help>");
+			sender.sendMessage(ChatColor.RED + "Použití: /dssettings <set,get,help>");
 			return true;
 		} 
 		else if(args.length == 1 && args[0].equals("help")) {
 			sender.sendMessage(ChatColor.GOLD + "'dssettings' help:");
-			sender.sendMessage(ChatColor.DARK_GREEN + "- help: " + ChatColor.GREEN + "shows this page");
-			sender.sendMessage(ChatColor.DARK_GREEN + "- get: " + ChatColor.GREEN + "sends all the settings with values");
-			sender.sendMessage(ChatColor.DARK_GREEN + "- set: " + ChatColor.GREEN + "change a setting");
-			sender.sendMessage(ChatColor.AQUA + "(use '/dssettings help set' for a list of all the settings)");
+			sender.sendMessage(ChatColor.DARK_GREEN + "- help: " + ChatColor.GREEN + "ukáže tuto stránku");
+			sender.sendMessage(ChatColor.DARK_GREEN + "- get: " + ChatColor.GREEN + "ukáže všechna nastavení hry");
+			sender.sendMessage(ChatColor.DARK_GREEN + "- set: " + ChatColor.GREEN + "změní nastavení hry");
+			sender.sendMessage(ChatColor.AQUA + "(použijte '/dssettings help set' pro list všech nastavení)");
 		} 
 		else if (args.length == 2 && args[0].equals("help")) {	
 			sender.sendMessage(ChatColor.GOLD + "'dssettings set' help:");
 			sender.sendMessage(SettingsManager.instance.GetHelpString());
-			sender.sendMessage(ChatColor.RED + "Time is measured in ticks! (20 Ticks is 1 second)");
-			sender.sendMessage(ChatColor.AQUA + "(use '/dssettings help set TeleportMode' for a list of all the teleport modes)");
+			sender.sendMessage(ChatColor.RED + "Čas je měřen v tick! (20 Ticků je 1 sekunda)");
+			sender.sendMessage(ChatColor.AQUA + "(použijte '/dssettings help set TeleportMode' pro list všech teleport módů)");
 		} 
 		else if (args.length >= 3 && args[0].equals("help")) {
 			sender.sendMessage(ChatColor.GOLD + "'dssettings set TeleportMode' help:");
-			sender.sendMessage(ChatColor.DARK_GREEN + "- random: " + ChatColor.GREEN + "Players will be teleported to a random player (If it can't find a assortment in 500 trys it wil use the random circle method!)");
-			sender.sendMessage(ChatColor.DARK_GREEN + "- circle: " + ChatColor.GREEN + "Players will swap in a random circle thats generated at the start of the game");
-			sender.sendMessage(ChatColor.DARK_GREEN + "- random_circle: " + ChatColor.GREEN + "Circle method only the circle will change when a swap occurs");
-			sender.sendMessage(ChatColor.DARK_GREEN + "- fixed_circle: " + ChatColor.GREEN + "Circle method only the circle won't change between games");
-			sender.sendMessage(ChatColor.DARK_GREEN + "- pairs: " + ChatColor.GREEN + "Players will be teleported in pairs (If there is a uneven amount of players there wil be a 3 player pair)");
+			sender.sendMessage(ChatColor.DARK_GREEN + "- random: " + ChatColor.GREEN + "Hráči budou teleportováni random (Pokud se nenajde způsob ve 500 pokusech použije random circle metodu!)");
+			sender.sendMessage(ChatColor.DARK_GREEN + "- circle: " + ChatColor.GREEN + "Hráči se vymění v náhodném kruhu, který je generován na začátku hry");
+			sender.sendMessage(ChatColor.DARK_GREEN + "- random_circle: " + ChatColor.GREEN + "Metoda kruhu pouze kruh se změní, když dojde k výměně");
+			sender.sendMessage(ChatColor.DARK_GREEN + "- fixed_circle: " + ChatColor.GREEN + "Metoda kruhu pouze kruh se nezmění mezi hrami");
+			sender.sendMessage(ChatColor.DARK_GREEN + "- pairs: " + ChatColor.GREEN + "Hráči budou teleportováni ve dvojicích (pokud je počet hráčů lichý, bude vytvořena trojice)");
 		} 
 		else if (args.length == 1 || args.length == 2){
 			if (args[0].equals("get")) {
 				sender.sendMessage(SettingsManager.instance.GetSettingsString());
 			} 
 			else if(args[0].equals("set")) {
-				sender.sendMessage(ChatColor.RED + "Usage: /dssettings set <setting> <value> (Time needs to be in ticks!)");
+				sender.sendMessage(ChatColor.RED + "Použití: /dssettings set <setting> <value> (Čas musí být tickech, 20 Ticků = 1 sekunda!)");
 			} 
 			else {
-				sender.sendMessage(ChatColor.RED + "Usage: /dssettings <set,get,help>");
+				sender.sendMessage(ChatColor.RED + "Použití: /dssettings <set,get,help>");
 			}
 		} 
 		else if (args.length >= 3) {
@@ -78,7 +78,7 @@ public class DSSettings implements TabExecutor {
 				return true;
 			} 
 			else {
-				sender.sendMessage(ChatColor.RED + "Usage: /dssettings <set,get,help>");
+				sender.sendMessage(ChatColor.RED + "Použití: /dssettings <set,get,help>");
 			}
 		}
 		
