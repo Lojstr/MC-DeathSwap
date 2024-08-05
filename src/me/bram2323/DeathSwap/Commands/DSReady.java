@@ -34,32 +34,32 @@ public class DSReady implements TabExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
 		if (!(sender instanceof Player)) {
-			sender.sendMessage("Only players may execute this command!");
+			sender.sendMessage("Jenom hráči mohou použít tento příkaz!");
 			return true;
 		}
 		
 		Player p = (Player) sender;
 		
 		if (Main.game.State != 0) {
-			p.sendMessage(ChatColor.RED + "A game is still active!");
+			p.sendMessage(ChatColor.RED + "Hra je stále aktivní!");
 			return true;
 		}
 		
 		if (args.length == 0) {
 			if (Ready.contains(p.getUniqueId())) {
 				Ready.remove(p.getUniqueId());
-				Bukkit.broadcastMessage(ChatColor.DARK_RED + p.getName() + ChatColor.RED + " is no longer ready! " + ChatColor.WHITE + "[" + ChatColor.GREEN + Ready.toArray().length + "/" + Bukkit.getOnlinePlayers().toArray().length + ChatColor.WHITE + "]");
+				Bukkit.broadcastMessage(ChatColor.DARK_RED + p.getName() + ChatColor.RED + " není ready! " + ChatColor.WHITE + "[" + ChatColor.GREEN + Ready.toArray().length + "/" + Bukkit.getOnlinePlayers().toArray().length + ChatColor.WHITE + "]");
 			}
 			else {
 				Ready.add(p.getUniqueId());
-				Bukkit.broadcastMessage(ChatColor.DARK_GREEN + p.getName() + ChatColor.GREEN + " is ready! " + ChatColor.WHITE + "[" + ChatColor.GREEN + Ready.toArray().length + "/" + Bukkit.getOnlinePlayers().toArray().length + ChatColor.WHITE + "]");
+				Bukkit.broadcastMessage(ChatColor.DARK_GREEN + p.getName() + ChatColor.GREEN + " je ready! " + ChatColor.WHITE + "[" + ChatColor.GREEN + Ready.toArray().length + "/" + Bukkit.getOnlinePlayers().toArray().length + ChatColor.WHITE + "]");
 				if (Ready.toArray().length == Bukkit.getOnlinePlayers().toArray().length && Ready.toArray().length > 1) {
 					if ((int)SettingsManager.instance.GetSetting("AutoStart") < 0) {
-						Bukkit.broadcastMessage(ChatColor.GREEN + "You can start the game with /dsready start");
+						Bukkit.broadcastMessage(ChatColor.GREEN + "Můžete spustit hru s /dsready start");
 					}
 					else if (!AutoStart) {
 						int Seconds = (int)SettingsManager.instance.GetSetting("AutoStart") / 20;
-						Bukkit.broadcastMessage(ChatColor.GREEN + "The game is starting in " + Seconds + " seconds!");
+						Bukkit.broadcastMessage(ChatColor.GREEN + "Hra startuje za " + Seconds + " sekund!");
 						AutoStart = true;
 						BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
 						scheduler.scheduleSyncDelayedTask(Main.main, new Runnable() {
@@ -72,7 +72,7 @@ public class DSReady implements TabExecutor {
 						}, (int)SettingsManager.instance.GetSetting("AutoStart"));
 					}
 					else {
-						Bukkit.broadcastMessage(ChatColor.GREEN + "The game is starting in soon!");
+						Bukkit.broadcastMessage(ChatColor.GREEN + "Hra za chvíli začne!");
 					}
 				}
 			}
