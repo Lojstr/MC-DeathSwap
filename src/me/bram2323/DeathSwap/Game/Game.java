@@ -78,14 +78,14 @@ public class Game {
 		}
 		
 		if (!(Bukkit.getOnlinePlayers().size() > 1 || (dev && Bukkit.getOnlinePlayers().size() > 0))) {
-			Bukkit.broadcastMessage(ChatColor.RED + "You need at least 2 players to start the game!");
+			Bukkit.broadcastMessage(ChatColor.RED + "Potřebujete alespoň 2 hráče pro spuštění hry!");
 			return;
 		}
 		
 		world = Bukkit.getServer().getWorld((String)SettingsManager.instance.GetSetting("World"));
 		if (world == null) world = Bukkit.getServer().getWorlds().get(0);
 		
-		Bukkit.broadcastMessage("DeathSwap is about to start!");
+		Bukkit.broadcastMessage("DeathSwap za chvíli začne!");
 		world.setTime(0);
 		
 		InGame.clear();
@@ -185,7 +185,7 @@ public class Game {
 			}
 		}
 		
-		Bukkit.broadcastMessage(ChatColor.GREEN + "Death Swap, coded by " + ChatColor.GOLD + "bram2323" + ChatColor.GREEN + ", pitched by " + ChatColor.GOLD + "SethBling" + ChatColor.GREEN + ":\n" + ChatColor.WHITE + SettingsManager.instance.GetSettingsGameString() + ChatColor.GOLD + "\nGood luck!");
+		Bukkit.broadcastMessage(ChatColor.GREEN + "Death Swap, coded by " + ChatColor.GOLD + "bram2323" + ChatColor.GREEN + ", přeložil" + ChatColor.GOLD + "Lojstr" + ChatColor.GREEN + ":\n" + ChatColor.WHITE + SettingsManager.instance.GetSettingsGameString() + ChatColor.GOLD + "\nGood luck!");
 		
 		String devm = "";
 		Boolean first = true;
@@ -197,7 +197,7 @@ public class Game {
 		}
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			if (p.isOp() && dev) {
-				p.sendMessage(ChatColor.DARK_GREEN + "The next circle of teleportation is: " + devm);
+				p.sendMessage(ChatColor.DARK_GREEN + "Další kruh teleportace je za: " + devm);
 			}
 		}
 		
@@ -213,17 +213,17 @@ public class Game {
 		
 		if (InGame.size() == 1) {
 			Player tt = Bukkit.getPlayer(InGame.get(0));
-			Bukkit.broadcastMessage(ChatColor.GOLD + tt.getName() + ChatColor.RESET + ChatColor.GREEN + " has won the game!");
+			Bukkit.broadcastMessage(ChatColor.GOLD + tt.getName() + ChatColor.RESET + ChatColor.GREEN + " vyhrál hru!");
 			
 			for (Player t : Bukkit.getOnlinePlayers())
 			{
 				if ((Boolean)SettingsManager.instance.GetSetting("RandomSpawn")) t.teleport(world.getSpawnLocation());
 				if (!t.getUniqueId().equals(tt.getUniqueId())) {
 					t.teleport(world.getSpawnLocation());
-					t.sendTitle(ChatColor.GOLD + tt.getName() + ChatColor.RESET + ChatColor.GREEN + " has won!", ChatColor.DARK_RED + "You lost...", 10, 80 , 10);
+					t.sendTitle(ChatColor.GOLD + tt.getName() + ChatColor.RESET + ChatColor.GREEN + " vyhrál!", ChatColor.DARK_RED + "Prohrál jsi...", 10, 80 , 10);
 					t.playSound(t.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1.0F, 1.0F);
 				} else {
-					t.sendTitle(ChatColor.GOLD + "You" + ChatColor.RESET + ChatColor.GREEN + " win!", ChatColor.DARK_GREEN + "Good Job!", 10, 80 , 10);
+					t.sendTitle(ChatColor.GOLD + "Vyhrál" + ChatColor.RESET + ChatColor.GREEN + " jsi!", ChatColor.DARK_GREEN + "Dobrá práce!", 10, 80 , 10);
 					t.playSound(t.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 1.0F, 1.0F);
 					YmlFile ymlfile = new YmlFile();
 					ymlfile.WriteData(t, "Stats.Wins", 1 + ymlfile.ReadData(t.getUniqueId(), "Stats.Wins"));
@@ -238,7 +238,7 @@ public class Game {
 				YmlFile ymlfile = new YmlFile();
 				ymlfile.WriteData(p, "Stats.Disconnected", 1 + ymlfile.ReadData(p.getUniqueId(), "Stats.Disconnected"));
 			}
-			Bukkit.broadcastMessage("DeathSwap has stopped!");
+			Bukkit.broadcastMessage("DeathSwap byl zastaven!");
 		}
 		
 		ScoreboardManager manager = Bukkit.getScoreboardManager();
@@ -277,7 +277,7 @@ public class Game {
 		p.setFireTicks(0);
 		
 		InGame.remove(p.getUniqueId());
-		Bukkit.broadcastMessage(ChatColor.DARK_RED + p.getName() + ChatColor.RED + " is out! " + ChatColor.DARK_GREEN + InGame.size() + ChatColor.GREEN + " Remaining!");
+		Bukkit.broadcastMessage(ChatColor.DARK_RED + p.getName() + ChatColor.RED + " byl vyřazen! " + ChatColor.DARK_GREEN + InGame.size() + ChatColor.GREEN + " Hráčů zbývá!");
 		
 		p.getWorld().strikeLightningEffect(p.getLocation());
 		
@@ -307,9 +307,9 @@ public class Game {
 			Player p1 = Bukkit.getPlayer(RandomTP.get(RandomTP.size() - 1));
 			Player p2 = Bukkit.getPlayer(RandomTP.get(RandomTP.size() - 2));
 			Player p3 = Bukkit.getPlayer(RandomTP.get(RandomTP.size() - 3));
-			p1.sendMessage(ChatColor.GREEN + "Your pair: " + ChatColor.GOLD + p3.getName() + ChatColor.GREEN + " --> " + ChatColor.GOLD + p1.getName() + ChatColor.GREEN + " --> " + ChatColor.GOLD + p2.getName());
-			p2.sendMessage(ChatColor.GREEN + "Your pair: " + ChatColor.GOLD + p1.getName() + ChatColor.GREEN + " --> " + ChatColor.GOLD + p2.getName() + ChatColor.GREEN + " --> " + ChatColor.GOLD + p3.getName());
-			p3.sendMessage(ChatColor.GREEN + "Your pair: " + ChatColor.GOLD + p2.getName() + ChatColor.GREEN + " --> " + ChatColor.GOLD + p3.getName() + ChatColor.GREEN + " --> " + ChatColor.GOLD + p1.getName());
+			p1.sendMessage(ChatColor.GREEN + "Tvůj pár: " + ChatColor.GOLD + p3.getName() + ChatColor.GREEN + " --> " + ChatColor.GOLD + p1.getName() + ChatColor.GREEN + " --> " + ChatColor.GOLD + p2.getName());
+			p2.sendMessage(ChatColor.GREEN + "Tvůj pár: " + ChatColor.GOLD + p1.getName() + ChatColor.GREEN + " --> " + ChatColor.GOLD + p2.getName() + ChatColor.GREEN + " --> " + ChatColor.GOLD + p3.getName());
+			p3.sendMessage(ChatColor.GREEN + "Tvůj pár: " + ChatColor.GOLD + p2.getName() + ChatColor.GREEN + " --> " + ChatColor.GOLD + p3.getName() + ChatColor.GREEN + " --> " + ChatColor.GOLD + p1.getName());
 			int Size = RandomTP.size();
 			RandomTP.remove(Size - 1);
 			RandomTP.remove(Size - 2);
@@ -320,8 +320,8 @@ public class Game {
 			Pairs.add(new UUID[] {RandomTP.get(RandomTP.size() - 1), RandomTP.get(RandomTP.size() - 2)});
 			Player p1 = Bukkit.getPlayer(RandomTP.get(RandomTP.size() - 1));
 			Player p2 = Bukkit.getPlayer(RandomTP.get(RandomTP.size() - 2));
-			p1.sendMessage(ChatColor.GREEN + "Your pair: " + ChatColor.GOLD + p1.getName() + ChatColor.GREEN + " <--> " + ChatColor.GOLD + p2.getName());
-			p2.sendMessage(ChatColor.GREEN + "Your pair: " + ChatColor.GOLD + p2.getName() + ChatColor.GREEN + " <--> " + ChatColor.GOLD + p1.getName());
+			p1.sendMessage(ChatColor.GREEN + "Tvůj pár: " + ChatColor.GOLD + p1.getName() + ChatColor.GREEN + " <--> " + ChatColor.GOLD + p2.getName());
+			p2.sendMessage(ChatColor.GREEN + "Tvůj pár: " + ChatColor.GOLD + p2.getName() + ChatColor.GREEN + " <--> " + ChatColor.GOLD + p1.getName());
 			int Size = RandomTP.size();
 			RandomTP.remove(Size - 1);
 			RandomTP.remove(Size - 2);
@@ -334,11 +334,11 @@ public class Game {
 	
 	public void ShowPairs(Player p) {
 		if (InGame.size() < 2) {
-			p.sendMessage(ChatColor.RED + "There are no pairs!");
+			p.sendMessage(ChatColor.RED + "Nejsou žádné páry!");
 			return;
 		}
 		
-		p.sendMessage(ChatColor.DARK_GREEN + "The pairs:");
+		p.sendMessage(ChatColor.DARK_GREEN + "Páry:");
 		
 		for (UUID[] uuids : Pairs) {
 			Player p1 = Bukkit.getPlayer(uuids[0]);
@@ -375,7 +375,7 @@ public class Game {
 			Player t = Bukkit.getPlayer(RandomTP.get(InGame.indexOf(uuid)));
 			
 			p.teleport(RandomLoc.get(InGame.indexOf(uuid)));
-			p.sendMessage(ChatColor.GREEN + "You've been teleported to " + ChatColor.GOLD + t.getName());
+			p.sendMessage(ChatColor.GREEN + "Byl jsi teleportován k " + ChatColor.GOLD + t.getName());
 			p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
 			p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, (int)SettingsManager.instance.GetSetting("Safe"), 255));
 		}
@@ -428,7 +428,7 @@ public class Game {
 			
 			if (InGame.indexOf(uuid) + 1 == InGame.size()) {
 				p.teleport(location);
-				p.sendMessage(ChatColor.GREEN + "You've been teleported to " + ChatColor.GOLD + name);
+				p.sendMessage(ChatColor.GREEN + "Byl jsi teleportován k " + ChatColor.GOLD + name);
 				p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
 				p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, (int)SettingsManager.instance.GetSetting("Safe"), 255));
 				continue;
@@ -437,7 +437,7 @@ public class Game {
 			Player t = Bukkit.getPlayer((UUID)InGame.get(InGame.indexOf(uuid) + 1));
 			
 			p.teleport(t.getLocation());
-			p.sendMessage(ChatColor.GREEN + "You've been teleported to " + ChatColor.GOLD + t.getName());
+			p.sendMessage(ChatColor.GREEN + "Byl jsi teleportován k " + ChatColor.GOLD + t.getName());
 			p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
 			p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, (int)SettingsManager.instance.GetSetting("Safe"), 255));
 		}
@@ -458,7 +458,7 @@ public class Game {
 			Location location = p1.getLocation();
 			
 			p1.teleport(p2.getLocation());
-			p1.sendMessage(ChatColor.GREEN + "You've been teleported to " + ChatColor.GOLD + p2.getName());
+			p1.sendMessage(ChatColor.GREEN + "Byl jsi teleportován k " + ChatColor.GOLD + p2.getName());
 			p1.playSound(p1.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
 			p1.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, (int)SettingsManager.instance.GetSetting("Safe"), 255));
 			
@@ -466,18 +466,18 @@ public class Game {
 				Player p3 = Bukkit.getPlayer(uuids[2]);
 				
 				p2.teleport(p3.getLocation());
-				p2.sendMessage(ChatColor.GREEN + "You've been teleported to " + ChatColor.GOLD + p3.getName());
+				p2.sendMessage(ChatColor.GREEN + "Byl jsi teleportován k " + ChatColor.GOLD + p3.getName());
 				p2.playSound(p2.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
 				p2.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, (int)SettingsManager.instance.GetSetting("Safe"), 255));
 				
 				p3.teleport(location);
-				p3.sendMessage(ChatColor.GREEN + "You've been teleported to " + ChatColor.GOLD + p1.getName());
+				p3.sendMessage(ChatColor.GREEN + "Byl jsi teleportován k " + ChatColor.GOLD + p1.getName());
 				p3.playSound(p3.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
 				p3.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, (int)SettingsManager.instance.GetSetting("Safe"), 255));
 				continue;
 			} else {
 				p2.teleport(location);
-				p2.sendMessage(ChatColor.GREEN + "You've been teleported to " + ChatColor.GOLD + p1.getName());
+				p2.sendMessage(ChatColor.GREEN + "Byl jsi teleportován k " + ChatColor.GOLD + p1.getName());
 				p2.playSound(p2.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
 				p2.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, (int)SettingsManager.instance.GetSetting("Safe"), 255));
 			}
@@ -545,15 +545,15 @@ public class Game {
 			if (uuids.length == 2) {
 				Player p1 = Bukkit.getPlayer(uuids[0]);
 				Player p2 = Bukkit.getPlayer(uuids[1]);
-				p1.sendMessage(ChatColor.GREEN + "Your pair: " + ChatColor.GOLD + p1.getName() + ChatColor.GREEN + " <--> " + ChatColor.GOLD + p2.getName());
-				p2.sendMessage(ChatColor.GREEN + "Your pair: " + ChatColor.GOLD + p2.getName() + ChatColor.GREEN + " <--> " + ChatColor.GOLD + p1.getName());
+				p1.sendMessage(ChatColor.GREEN + "Tvůj pár: " + ChatColor.GOLD + p1.getName() + ChatColor.GREEN + " <--> " + ChatColor.GOLD + p2.getName());
+				p2.sendMessage(ChatColor.GREEN + "Tvůj pár: " + ChatColor.GOLD + p2.getName() + ChatColor.GREEN + " <--> " + ChatColor.GOLD + p1.getName());
 			} else {
 				Player p1 = Bukkit.getPlayer(uuids[0]);
 				Player p2 = Bukkit.getPlayer(uuids[1]);
 				Player p3 = Bukkit.getPlayer(uuids[2]);
-				p1.sendMessage(ChatColor.GREEN + "Your pair: " + ChatColor.GOLD + p3.getName() + ChatColor.GREEN + " --> " + ChatColor.GOLD + p1.getName() + ChatColor.GREEN + " --> " + ChatColor.GOLD + p2.getName());
-				p2.sendMessage(ChatColor.GREEN + "Your pair: " + ChatColor.GOLD + p1.getName() + ChatColor.GREEN + " --> " + ChatColor.GOLD + p2.getName() + ChatColor.GREEN + " --> " + ChatColor.GOLD + p3.getName());
-				p3.sendMessage(ChatColor.GREEN + "Your pair: " + ChatColor.GOLD + p2.getName() + ChatColor.GREEN + " --> " + ChatColor.GOLD + p3.getName() + ChatColor.GREEN + " --> " + ChatColor.GOLD + p1.getName());
+				p1.sendMessage(ChatColor.GREEN + "Tvůj pár: " + ChatColor.GOLD + p3.getName() + ChatColor.GREEN + " --> " + ChatColor.GOLD + p1.getName() + ChatColor.GREEN + " --> " + ChatColor.GOLD + p2.getName());
+				p2.sendMessage(ChatColor.GREEN + "Tvůj pár: " + ChatColor.GOLD + p1.getName() + ChatColor.GREEN + " --> " + ChatColor.GOLD + p2.getName() + ChatColor.GREEN + " --> " + ChatColor.GOLD + p3.getName());
+				p3.sendMessage(ChatColor.GREEN + "Tvůj pár: " + ChatColor.GOLD + p2.getName() + ChatColor.GREEN + " --> " + ChatColor.GOLD + p3.getName() + ChatColor.GREEN + " --> " + ChatColor.GOLD + p1.getName());
 			}
 		}
 		
@@ -592,7 +592,7 @@ public class Game {
 			}
 			Timer++;
 			for (Player t : Bukkit.getOnlinePlayers()) {
-				t.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("Loading chunks: " + ChatColor.GREEN + Loaded + ChatColor.WHITE + "/" + ChatColor.GOLD + Total + ChatColor.GREEN + " Begining in: " + (10 - Timer / 20)));
+				t.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("Načítání chunků: " + ChatColor.GREEN + Loaded + ChatColor.WHITE + "/" + ChatColor.GOLD + Total + ChatColor.GREEN + " Start za: " + (10 - Timer / 20)));
 				
 			}
 			if (Total == Loaded && Timer > 200) {
@@ -634,15 +634,15 @@ public class Game {
 		
 		if ((int)SettingsManager.instance.GetSetting("Warning") >= UntilSwap) {
 			BigDecimal US = new BigDecimal((float)UntilSwap / 20);
-			TimerMessage += ChatColor.DARK_RED + " Swapping in: " + US.setScale(1, RoundingMode.HALF_UP) + " Seconds!";
+			TimerMessage += ChatColor.DARK_RED + " Výměna za: " + US.setScale(1, RoundingMode.HALF_UP) + " Sekund!";
 		}
 		
 		for(Player p : Bukkit.getOnlinePlayers()) {
 			
 			if (MainTimer < (int)SettingsManager.instance.GetSetting("MinTimer") && (Boolean)SettingsManager.instance.GetSetting("ShowTime")) {
-				p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.GREEN + "[safe] Time since swap: " + TimerMessage));
+				p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.GREEN + "[bezpečné] Čas od výměny: " + TimerMessage));
 			} else if ((Boolean)SettingsManager.instance.GetSetting("ShowTime")) {
-				p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.RED + "[unsafe] Time since swap: " + TimerMessage));
+				p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.RED + "[nebezpečné] Čas od výměny: " + TimerMessage));
 			} else {
 				p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.GREEN + TimerMessage));
 			}
@@ -669,7 +669,7 @@ public class Game {
 			if(EPearl > 0) {
 				for (Player p : Bukkit.getOnlinePlayers()) {
 					if (p.isOp() && dev) {
-						p.sendMessage("Removed " + EPearl + " enderpearl(s)!");
+						p.sendMessage("Odstraněny " + EPearl + " enderpearly!");
 					}
 				}
 			}
@@ -704,7 +704,7 @@ public class Game {
 				first = false;
 			}
 			for (Player p : Bukkit.getOnlinePlayers()) {
-				if (p.isOp() && dev) p.sendMessage(ChatColor.DARK_GREEN + "The next circle of teleportation is: " + devm);
+				if (p.isOp() && dev) p.sendMessage(ChatColor.DARK_GREEN + "Další kruh teleportace je za: " + devm);
 				Chunk chunk = p.getLocation().getChunk();
 				SendChunk(chunk, p);
 			}
