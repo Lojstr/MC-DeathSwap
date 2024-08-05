@@ -25,12 +25,12 @@ public class DSStart implements TabExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
 		if (!sender.hasPermission("ds.start")) {
-			sender.sendMessage(ChatColor.RED + "You do not have permision to use this command!");
+			sender.sendMessage(ChatColor.RED + "Nemáte povolení použít tento příkaz!");
 			return true;
 		}
 		
 		if (Main.game.State != 0) {
-			sender.sendMessage(ChatColor.RED + "A game is still active!");
+			sender.sendMessage(ChatColor.RED + "Hra je ještě aktivní!");
 			return true;
 		}
 		
