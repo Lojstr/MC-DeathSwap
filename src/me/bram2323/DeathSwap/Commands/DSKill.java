@@ -27,7 +27,7 @@ public class DSKill implements TabExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
 		if (!(sender instanceof Player)) {
-			sender.sendMessage(ChatColor.RED + "Only player may execute this command");
+			sender.sendMessage(ChatColor.RED + "Jen hráč může použít tento příkaz!");
 			return true;
 		}
 		
@@ -35,7 +35,7 @@ public class DSKill implements TabExecutor {
 		Game game = Main.game;
 		
 		if (game == null || game.State == 0) {
-			p.sendMessage(ChatColor.RED + "Your not in a game!");
+			p.sendMessage(ChatColor.RED + "Nejsi ve hře!");
 			return true;
 		}
 		
