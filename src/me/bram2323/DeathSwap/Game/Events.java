@@ -69,7 +69,7 @@ public class Events implements Listener{
 		}
 		if (game.State != 0) {
 			game.RemovePlayer(p);
-			p.sendMessage(ChatColor.AQUA + "You can use /dstp <player> to teleport to players!");
+			p.sendMessage(ChatColor.AQUA + "Můžeš použít /dstp <hráč> pro teleportaci k hráčům!");
 			PlayerNextSpawnLocation.put(p.getUniqueId(), deathLocation);
 			BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
     	    scheduler.scheduleSyncDelayedTask(Main.main, new Runnable() {
