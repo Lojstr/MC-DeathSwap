@@ -44,7 +44,7 @@ public class PacketMapChunk {
     
     public final void send(final Player player) {
         ((CraftPlayer)player).getHandle().playerConnection.sendPacket(new PacketPlayOutMapChunk(chunk, 20));
-        if (player.isOp() && Main.game.dev) player.sendMessage("Chunk sended! " + chunk.getPos().x + "," + chunk.getPos().z);
+        if (player.isOp() && Main.game.dev) player.sendMessage("Chunk poslán! " + chunk.getPos().x + "," + chunk.getPos().z);
     }
    
     /**
