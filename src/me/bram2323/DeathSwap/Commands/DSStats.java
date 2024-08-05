@@ -29,7 +29,7 @@ public class DSStats implements TabExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
 		if (!(sender instanceof Player)) {
-			sender.sendMessage(ChatColor.RED + "Only player may execute this command");
+			sender.sendMessage(ChatColor.RED + "Jen hráč může použít tento příkaz!");
 			return true;
 		}
 		
@@ -59,12 +59,12 @@ public class DSStats implements TabExecutor {
 			@SuppressWarnings("deprecation")
 			OfflinePlayer tt = Bukkit.getOfflinePlayer(args[0]);
 			
-				p.sendMessage(ChatColor.DARK_GREEN + "Stats of " + ChatColor.GOLD + tt.getName());
-				p.sendMessage(ChatColor.GREEN + "Games: " + ChatColor.DARK_GREEN + yml.ReadData(tt.getUniqueId(), "Stats.Games"));
-				p.sendMessage(ChatColor.GREEN + "Wins: " + ChatColor.GOLD + yml.ReadData(tt.getUniqueId(), "Stats.Wins"));
-				p.sendMessage(ChatColor.GREEN + "Swaps: " + ChatColor.DARK_GREEN + yml.ReadData(tt.getUniqueId(), "Stats.Swaps"));
-				p.sendMessage(ChatColor.GREEN + "Deaths: " + ChatColor.RED + yml.ReadData(tt.getUniqueId(), "Stats.Deaths"));
-				p.sendMessage(ChatColor.GREEN + "Disconnected: " + ChatColor.RED + yml.ReadData(tt.getUniqueId(), "Stats.Disconnected"));
+				p.sendMessage(ChatColor.DARK_GREEN + "Statistika hráče " + ChatColor.GOLD + tt.getName());
+				p.sendMessage(ChatColor.GREEN + "Hry: " + ChatColor.DARK_GREEN + yml.ReadData(tt.getUniqueId(), "Stats.Games"));
+				p.sendMessage(ChatColor.GREEN + "Winy: " + ChatColor.GOLD + yml.ReadData(tt.getUniqueId(), "Stats.Wins"));
+				p.sendMessage(ChatColor.GREEN + "Swapy: " + ChatColor.DARK_GREEN + yml.ReadData(tt.getUniqueId(), "Stats.Swaps"));
+				p.sendMessage(ChatColor.GREEN + "Úmrtí: " + ChatColor.RED + yml.ReadData(tt.getUniqueId(), "Stats.Deaths"));
+				p.sendMessage(ChatColor.GREEN + "Odpojení: " + ChatColor.RED + yml.ReadData(tt.getUniqueId(), "Stats.Disconnected"));
 				int Time = yml.ReadData(tt.getUniqueId(), "Stats.Time");
 				int Minutes = 0;
 				while (Time >= 1200) {
@@ -72,9 +72,9 @@ public class DSStats implements TabExecutor {
 					Time -= 1200;
 				}
 				if (Time < 200) {
-					p.sendMessage(ChatColor.GREEN + "Time played: " + ChatColor.DARK_GREEN + Minutes + ":0" + Time / 20f);
+					p.sendMessage(ChatColor.GREEN + "Odehraný čas: " + ChatColor.DARK_GREEN + Minutes + ":0" + Time / 20f);
 				} else {
-					p.sendMessage(ChatColor.GREEN + "Time played: " + ChatColor.DARK_GREEN + Minutes + ":" + Time / 20f);
+					p.sendMessage(ChatColor.GREEN + "Odehraný čas: " + ChatColor.DARK_GREEN + Minutes + ":" + Time / 20f);
 				}
 		}
 		
